@@ -1,0 +1,22 @@
+{
+  "name": "new_visions_for_public_schools",
+  "version": "1.0.0",
+  "description": "Dashboards are displays we build at New Visions to help each other",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Kessaris",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "hbs": "^4.0.4",
+    "mongoose": "^5.5.15",
+    "path": "^0.12.7"
+  }
+}
