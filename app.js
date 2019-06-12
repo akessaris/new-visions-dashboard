@@ -15,21 +15,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
-var uristring =
-  process.env.MONGOLAB_ORANGE_URI ||
-  'mongodb://localhost/new-visions';
+var uristring ='mongodb://localhost/new-visions';
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
 const mongoose = require('mongoose');
-mongoose.connect(uristring, {useNewUrlParser: true}, function (err, res) {
+mongoose.connect(uristring, {useNewUrlParser: true}, (err) => {
   if (err) {
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
     console.log ('Succeeded connected to: ' + uristring);
   }
 });
-mongoose.Promise = global.Promise;
 
 //Logger
 app.use((req, res, next) => {
@@ -41,15 +38,18 @@ app.use((req, res, next) => {
 const index = require('./routes/index');
 app.use('/', index);
 
+//Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res) {
+app.use((err, req, res)=> {
   // render the error page
   res.status(err.status || 500);
   res.render('error');

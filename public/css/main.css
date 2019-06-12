@@ -1,0 +1,15 @@
+table {
+    margin-top: 20px;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background: black;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background: #d1d1d1;
+}
