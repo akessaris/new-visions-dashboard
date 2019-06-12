@@ -1,1 +1,36 @@
-<h1>Dashboard</h1>
+<h1>New Visions for Public Schools Dashboard</h1>
+
+<h2>Enter Attendance Percentage:</h2>
+<form method="GET" action="/">
+    <input type="number" name="attendancePercentage">
+    <input type="submit">
+</form>
+
+<div id="students">
+    <table>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Cohort</th>
+            <th>Attendance %</th>
+            <th>Home Phone</th>
+            <th>Guidance Counselor</th>
+            <th>Guidance Counselor Email</th>
+        </tr>
+        {{!-- 
+            Receives array of students from MainController
+            For each student in students array, get the student object's value using its keys and assign them to appropriate rows
+        --}}
+        {{#each students}}
+            <tr>
+                <td>{{lastName}}</td>
+                <td>{{firstName}}</td>
+                <td>{{cohort}}</td>
+                <td>{{attendancePercentage}}</td>
+                <td>{{homePhoneNumber}}</td>
+                <td>{{guidanceCounselor}}</td>
+                <td>{{guidanceCounselorEmail}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</div>

@@ -15,9 +15,30 @@ chronically absent. Upon modifying the threshold, the list of students should ch
 
 ## Technologies Used
 * Node.js
-* Handlebars
+  * It's non-blocking I/O model allows for real-time functionality, which would be a useful future feature rather than having to submit a form
+  * It's also highly scalable and efficient
 * Express
+  * Light-weight web application framework that allows for MVC architecture
+  * Integrates with Node.js, MongoDB, Mongoose, and Handlebars
 * MongoDB
+  * The data given was JSON format so I decided to use MongoDB since it is document oriented
+  * Offers high performance and scalability with easy setup
+* Mongoose
+  * Allows me to create data schemas for the data I store in Mongo
+* Handlebars
+  * Templating that allows me to extend layouts across several pages if necessary
+  * Allowed dynamic passing of data retrieved from database to pages
 
 ## How to Run
-1. 
+1. Clone (or download) github repo:
+  * $ git clone https://github.com/akessaris/new-visions-dashboard.git
+2. Import JSON data to Mongo
+  * $ mongoimport --db new-visions --collection students --file /location/of/students.json --jsonArray
+3. Install node modules
+  * $ npm install
+4. Start the server
+  * $ npm start
+5. Start mongo
+  * In separate window but still in directory of project, run: $ mongod
+  * In another separate window, run: $ mongo
+6. Go to http://localhost:5000/ in browser

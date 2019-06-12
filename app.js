@@ -13,12 +13,6 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Session management
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo')(session);
-
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
 var uristring =
@@ -27,6 +21,7 @@ var uristring =
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
+const mongoose = require('mongoose');
 mongoose.connect(uristring, {useNewUrlParser: true}, function (err, res) {
   if (err) {
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
@@ -34,20 +29,7 @@ mongoose.connect(uristring, {useNewUrlParser: true}, function (err, res) {
     console.log ('Succeeded connected to: ' + uristring);
   }
 });
-
 mongoose.Promise = global.Promise;
-const db = mongoose.connection;
-
-app.use(cookieParser());
-app.use(session({
-    secret: 'my-secret',
-    resave: false,
-    saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: db })
-}));
-
-//Routing
-const index = require('./routes/index');
 
 //Logger
 app.use((req, res, next) => {
@@ -55,8 +37,8 @@ app.use((req, res, next) => {
   next();
 });
 
-//Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+//Routing
+const index = require('./routes/index');
 app.use('/', index);
 
 // catch 404 and forward to error handler
